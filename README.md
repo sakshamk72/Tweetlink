@@ -51,7 +51,7 @@ class Tweet(models.Model):
 ### Images
 
 ![Login](https://github.com/AshutoshSundriyal/tweetlinks/blob/master/previews/login.JPG)
-![Feed](https://github.com/AshutoshSundriyal/tweetlinks/blob/master/previews/tweetlinks.JPG)
+
 
 ### A Glimpse into the Backend
 The backend of this app is managed by Django and Python. Tweepy API connects to the twitter's account of the user. Once connected the API fetches all the tweets of the user along with that of his/her friends. Then as clients requirement only tweets within the past 7 days are required , so a filtering function is used for that purpose. Moreover only those tweets are required which have links assosated with them, so second filter mechanism filter those tweets which have links.

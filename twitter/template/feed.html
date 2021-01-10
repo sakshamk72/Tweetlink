@@ -1,0 +1,157 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/png" href="{% static 'blog/logo.png' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
+        <title>TweetLink</title>
+    </head>
+  <body>
+      <header class="site-header">
+      <nav
+              style="border-bottom: 1px solid rgba(255, 255, 255, 0.1)"
+              class="navbar navbar-expand navbar-dark bg-steel">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto pl-2">
+              <a class="nav-item nav-link" href="#page-top">Home</a>
+            </div>
+                    <div class="navbar-nav pr-2">
+                        <a class="nav-item nav-link" href="/feed/logout" >Logout</a>
+                    </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container-fluid">
+      <br>
+        <div class="row">
+            <div class="col-12 col-md-3 pr-4 dont-move">
+            <a href="/"> <h2 style="margin-left:15px"><img class="img-fluid" width="60" src="{% static 'blog/logo.png' %}">TweetLinks</h2></a><br>
+            <div class="profile-section hovered-tweet" >
+            <h3 style="margin-left:12px" class="white-important p-2">
+                Profile
+            </h3>
+            <article class="media content-section" style="height: 140px; width: 100%">
+                    <div class="mt-2 d-flex full-width align-items-center">
+                        <img
+                           class="rounded-circle mr-3 img-fluid"
+                           style="width: 90px; height: 90px;"
+                           src="{{ image_url }}">
+                        <div>
+                            <h5 style="text-align: left"
+                                    class="white-important">
+                                {{ name }}
+                            </h5>
+                            <h6 style="text-align: left"
+                                    class="email-profile">
+                                @{{ screen_name }}
+                            </h6>
+                        </div>
+                    </div>
+            </article>
+            <article class="media content-section">
+                <div style="margin: auto" class="row full-width pl-2">
+                    <div class="col-6">
+                            Followers
+                    </div>
+                    <div class="col-6">
+                            Following
+                    </div>
+                        <div class="col-6">
+                            <h3 class="white-important follow-click">
+                                    {{ followers}}
+                            </h3>
+                        </div>
+                         <div class="col-6">
+                                <h3 class="white-important follow-click">
+                                    {{ following }}
+                                </h3>
+                        </div>
+                </div>
+            </article>
+            <div class="d-flex">
+                <div style="margin: auto">
+                    <a class="btn btn-sm btn-outline-primary mb-4 mr-3 " href="http://www.{{profile_url}}">
+                        View Profile
+                    </a>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-12 col-md-6">
+                {% for html in data %}
+                {{html|safe}}
+                <br>
+                {% endfor %}
+            </div>
+            {%  if trending_username != "" %}
+            <div class="col-12 col-md-3 dont-move">
+            <h3 class="white-important mb-3 mt-4"> Trends </h3>
+                <article class="t-section media content-section">
+                    <div class="row ">
+                        <div style="margin:auto" class="col-12">
+                            <h4>Most Trending User</h4>
+                        </div>
+                        <ul class="col-12">
+                                <li>
+                                    <div class="who-to-follow">
+
+                                        <div
+                                               style="padding-left:0px margin-top:50px "
+                                               class="col-8 no-padding d-flex align-items-center">
+                                           <img
+                                               class="rounded-circle mr-2"
+                                               style="width: 20px; height: 20px;"
+                                               src="{{ trending_url }}">
+                                           <a class="mr-2 white-important">
+                                             {{ trending_fullname }}
+                                           </a>
+                                       </div>
+                                        <div>
+                                            <p style="margin-left: 24px" > @{{ trending_username }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                        </ul>
+
+                    </div>
+                </article>
+                <article class="t-section media content-section">
+                    <div class="row ">
+                        <div style="margin:auto" class="col-12">
+                            <h4>Most Trending Domain</h4>
+                        </div>
+                        <ul class="col-12">
+                                <li>
+                                    <div class="who-to-follow">
+
+                                        <div
+                                               style=" margin-left:5px padding-left: 0px !important;"
+                                               class="col-8 no-padding d-flex align-items-center">
+                                           <a class="mr-2 white-important">
+                                               {{ trending_domain }}
+                                           </a>
+                                       </div>
+                                    </div>
+                                </li>
+                        </ul>
+
+                    </div>
+                </article>
+
+            </div>
+         </div>
+         {%  endif %}
+        </div>
+    </main>
+  </body>
+</html>
